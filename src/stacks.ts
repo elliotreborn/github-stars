@@ -148,6 +148,7 @@ const Stacks: Stack[] = [
       'gocolly/colly',
       'matthewmueller/x-ray',
       'simplecrawler/simplecrawler',
+      'crawlab-team/crawlab',
     ],
   },
   {
