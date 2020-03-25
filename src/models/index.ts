@@ -1,15 +1,15 @@
 import storageModel, { StorageModel } from './storage'
-import historyModel, { HistoryModel } from './history'
+import starsModel, { StarsModel } from './stars'
 
 
 export interface StoreModel {
   storage: StorageModel
-  history: HistoryModel
+  stars: StarsModel
 }
 
 const storeModel: StoreModel = {
   storage: storageModel,
-  history: historyModel,
+  stars: starsModel,
 }
 
 export default storeModel

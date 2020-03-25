@@ -28,7 +28,7 @@ const Slogan: React.FC = (): JSX.Element => {
 
   return (
     <div className={css.oauthbar}>
-      <a className={cs('button', 'is-danger', 'is-small', css.github)} onClick={GithubOAuth}>
+      <a className={cs('button', 'is-danger', 'is-small')} onClick={GithubOAuth}>
         <Github className={css.gicon} />
         OAuth for token
       </a>
