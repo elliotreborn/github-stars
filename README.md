@@ -22,9 +22,9 @@
 
 ## Introduction
 
-Inspired by the [timqian/github-stars](https://github.com/timqian/github-stars).  
-This project extended the star history comparison of multiple github repositories in a technology stack.  
-You can easily build the technology stack-related repositories you understand and download chart image.
+Inspired by the [timqian/star-history](https://github.com/timqian/star-history).  
+The project extension implements the comparison of star trend data for multiple GitHub repository in the technology stack.
+You can easily add the technology stack-related repositories you understand and download chart image.
 
 <!-- ## Browser Extension
 
