@@ -22,8 +22,8 @@ export interface HistoryModel {
   displayStacks: Computed<HistoryModel, Array<Stack>>
   backStacks: Computed<HistoryModel, Array<Stack>>
   frontStacks: Computed<HistoryModel, Array<Stack>>
-  hiddenStacks: Computed<HistoryModel, Array<Stack>>
 
+  hiddenStacks: Computed<HistoryModel, Array<Stack>>
   addHiddenStack: Action<HistoryModel, string>
   removeHiddenStack: Action<HistoryModel, string>
 
@@ -67,8 +67,8 @@ const historyModel: HistoryModel = {
   displayStacks: computed(state => state.presetStacks.filter(s => !s.hidden).concat(state.privateStacks)),
   backStacks: computed(state => state.displayStacks.filter(s => s.type === StackType.Backend)),
   frontStacks: computed(state => state.displayStacks.filter(s => s.type === StackType.Frontend)),
+  
   hiddenStacks: computed(state => state.presetStacks.filter(s => s.hidden)),
-
   addHiddenStack: action((state, name) => {
     const stack = state.presetStacks.find(s => s.id === name)
     if (!stack) return
