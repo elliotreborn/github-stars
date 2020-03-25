@@ -8,10 +8,10 @@ import Language from '../utils/language'
 import { Stack, StackType } from '../stacks'
 import { useStoreActions, useStoreState } from '../utils/hooks'
 import { IntEnumObjects } from '../utils/assist'
-import { DisplayType } from '../models/history'
-import { Repository } from '../services/history.service'
+import { DisplayType } from '../models/stars'
+import { Repository } from '../services/stars.service'
 import OAuth from './oauth'
-import css from './history.module.scss'
+import css from './stars.module.scss'
 import Loader from './loader'
 import { ReactComponent as Twitter } from '../images/twitter.svg'
 
@@ -39,7 +39,7 @@ const highchartsConfig = {
 const displayTypeOptions = IntEnumObjects(DisplayType)
 
 const History: React.FC = (): JSX.Element => {
-  const initialCurrentStack = useStoreActions(actions => actions.history.initialCurrentStack)
+  const initialCurrentStack = useStoreActions(actions => actions.stars.initialCurrentStack)
   const estimateRegion = useStoreActions(actions => actions.storage.estimateRegion)
   useEffect(() => {
     initialCurrentStack()
@@ -48,24 +48,24 @@ const History: React.FC = (): JSX.Element => {
 
   const language = useStoreState<Language>(state => state.storage.language)
   const githubToken = useStoreState<string>(state => state.storage.githubToken)
-  const displayType = useStoreState<DisplayType>(state => state.history.displayType)
-  const privateStacks = useStoreState<Array<Stack>>(state => state.history.privateStacks)
-  const displayStacks = useStoreState<Array<Stack>>(state => state.history.displayStacks)
-  const backStacks = useStoreState<Array<Stack>>(state => state.history.backStacks)
-  const frontStacks = useStoreState<Array<Stack>>(state => state.history.frontStacks)
-  const hiddenStacks = useStoreState<Array<Stack>>(state => state.history.hiddenStacks)
-  const currentStack = useStoreState<Stack | null>(state => state.history.currentStack)
-  const repositorys = useStoreState<Array<Repository>>(state => state.history.repositorys)
-  const loading = useStoreState<boolean>(state => state.history.loading)
+  const displayType = useStoreState<DisplayType>(state => state.stars.displayType)
+  const privateStacks = useStoreState<Array<Stack>>(state => state.stars.privateStacks)
+  const displayStacks = useStoreState<Array<Stack>>(state => state.stars.displayStacks)
+  const backStacks = useStoreState<Array<Stack>>(state => state.stars.backStacks)
+  const frontStacks = useStoreState<Array<Stack>>(state => state.stars.frontStacks)
+  const hiddenStacks = useStoreState<Array<Stack>>(state => state.stars.hiddenStacks)
+  const currentStack = useStoreState<Stack | null>(state => state.stars.currentStack)
+  const repositorys = useStoreState<Array<Repository>>(state => state.stars.repositorys)
+  const loading = useStoreState<boolean>(state => state.stars.loading)
 
-  const setDisplayType = useStoreActions(actions => actions.history.setDisplayType)
-  const addHiddenStack = useStoreActions(actions => actions.history.addHiddenStack)
-  const removeHiddenStack = useStoreActions(actions => actions.history.removeHiddenStack)
-  const addPrivateStack = useStoreActions(actions => actions.history.addPrivateStack)
-  const removePrivateStack = useStoreActions(actions => actions.history.removePrivateStack)
-  const addPrivateStackRepoAndData = useStoreActions(actions => actions.history.addPrivateStackRepoAndData)
-  const removePrivateStackRepo = useStoreActions(actions => actions.history.removePrivateStackRepo)
-  const selectStack = useStoreActions(actions => actions.history.selectStack)
+  const setDisplayType = useStoreActions(actions => actions.stars.setDisplayType)
+  const addHiddenStack = useStoreActions(actions => actions.stars.addHiddenStack)
+  const removeHiddenStack = useStoreActions(actions => actions.stars.removeHiddenStack)
+  const addPrivateStack = useStoreActions(actions => actions.stars.addPrivateStack)
+  const removePrivateStack = useStoreActions(actions => actions.stars.removePrivateStack)
+  const addPrivateStackRepoAndData = useStoreActions(actions => actions.stars.addPrivateStackRepoAndData)
+  const removePrivateStackRepo = useStoreActions(actions => actions.stars.removePrivateStackRepo)
+  const selectStack = useStoreActions(actions => actions.stars.selectStack)
 
   const [inputStackName, setInputStackName] = useState<string>('')
   const [inputRepoName, setInputRepoName] = useState<string>('')

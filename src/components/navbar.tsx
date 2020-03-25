@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import cs from 'classnames'
 import Language from '../utils/language'
 import { useStoreState, useStoreActions } from '../utils/hooks'
-import { DisplayType } from '../models/history'
+import { DisplayType } from '../models/stars'
 import logoUrl from '../images/logo.svg'
 import { StringEnumObjects, isEdgeChromium } from '../utils/assist'
 import { ReactComponent as Github } from '../images/github.svg'
@@ -12,7 +12,7 @@ import wechatQRUrl from '../images/wechat.png'
 const languageOptions = StringEnumObjects(Language)
 
 const Navbar: React.FC = () => {
-  const displayType = useStoreState<DisplayType>(state => state.history.displayType)
+  const displayType = useStoreState<DisplayType>(state => state.stars.displayType)
   const language = useStoreState<Language>(state => state.storage.language)
   const setLanguage = useStoreActions(actions => actions.storage.setLanguage)
   const [wechatQR, setWechatQR] = useState(false)

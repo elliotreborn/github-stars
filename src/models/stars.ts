@@ -3,7 +3,7 @@ import Stacks, { Stack, StackType } from '../stacks'
 import { generateUuid , winSearchParams } from '../utils/assist'
 import { Injections } from '../store'
 import { StoreModel } from './index'
-import { Repository } from '../services/history.service'
+import { Repository } from '../services/stars.service'
 import { error, warn } from '../utils/toast'
 
 export enum DisplayType {
@@ -13,40 +13,40 @@ export enum DisplayType {
   Hidden,
 }
 
-export interface HistoryModel {
+export interface StarsModel {
   displayType: DisplayType
-  setDisplayType: Action<HistoryModel, DisplayType>
+  setDisplayType: Action<StarsModel, DisplayType>
 
   presetStacks: Array<Stack>
 
-  displayStacks: Computed<HistoryModel, Array<Stack>>
-  backStacks: Computed<HistoryModel, Array<Stack>>
-  frontStacks: Computed<HistoryModel, Array<Stack>>
+  displayStacks: Computed<StarsModel, Array<Stack>>
+  backStacks: Computed<StarsModel, Array<Stack>>
+  frontStacks: Computed<StarsModel, Array<Stack>>
 
-  hiddenStacks: Computed<HistoryModel, Array<Stack>>
-  addHiddenStack: Action<HistoryModel, string>
-  removeHiddenStack: Action<HistoryModel, string>
+  hiddenStacks: Computed<StarsModel, Array<Stack>>
+  addHiddenStack: Action<StarsModel, string>
+  removeHiddenStack: Action<StarsModel, string>
 
   privateStacks: Array<Stack>
-  addPrivateStack: Action<HistoryModel, { name: string, repos?: string[] }>
-  removePrivateStack: Action<HistoryModel, string>
-  addPrivateStackRepo: Action<HistoryModel, { stackid: string; repo: string }>
-  addPrivateStackRepoAndData: Thunk<HistoryModel, { stackid: string; repo: string }, Injections, StoreModel>
-  removePrivateStackRepo: Action<HistoryModel, { stackid: string; repo: string }>
-  onPrivateStack: ActionOn<HistoryModel>
+  addPrivateStack: Action<StarsModel, { name: string, repos?: string[] }>
+  removePrivateStack: Action<StarsModel, string>
+  addPrivateStackRepo: Action<StarsModel, { stackid: string; repo: string }>
+  addPrivateStackRepoAndData: Thunk<StarsModel, { stackid: string; repo: string }, Injections, StoreModel>
+  removePrivateStackRepo: Action<StarsModel, { stackid: string; repo: string }>
+  onPrivateStack: ActionOn<StarsModel>
 
   currentStack: Stack | null
-  setCurrentStack: Action<HistoryModel, Stack>
-  initialCurrentStack: Thunk<HistoryModel, void, void, StoreModel>
+  setCurrentStack: Action<StarsModel, Stack>
+  initialCurrentStack: Thunk<StarsModel, void, void, StoreModel>
 
   loading: boolean
-  setLoading: Action<HistoryModel, boolean>
+  setLoading: Action<StarsModel, boolean>
 
   repositorys: Array<Repository>
-  clearRepositorys: Action<HistoryModel>
-  pushRepository: Action<HistoryModel, Repository>
+  clearRepositorys: Action<StarsModel>
+  pushRepository: Action<StarsModel, Repository>
 
-  selectStack: Thunk<HistoryModel, Stack, Injections, StoreModel>
+  selectStack: Thunk<StarsModel, Stack, Injections, StoreModel>
 }
 
 const defaultPresetStacks = (): Array<Stack> => {
@@ -55,7 +55,7 @@ const defaultPresetStacks = (): Array<Stack> => {
   return Stacks
 }
 
-const historyModel: HistoryModel = {
+const starsModel: StarsModel = {
   displayType: JSON.parse(localStorage.getItem('displayType') || '0'),
   setDisplayType: action((state, payload) => {
     state.displayType = payload
@@ -118,11 +118,11 @@ const historyModel: HistoryModel = {
     actions.setLoading(true)
     const { region, githubToken } = getStoreState().storage
     try {
-      const data = await injections.historyService.getRepoData({ repo, region, githubToken })
+      const data = await injections.starsService.getRepoData({ repo, region, githubToken })
       if (data) {
         actions.pushRepository(data)
         if (data.requiredCacheUpdate) {
-          injections.historyService.saveRepoToStore(data)
+          injections.starsService.saveRepoToStore(data)
         }
       }
     } catch (err) {
@@ -208,11 +208,11 @@ const historyModel: HistoryModel = {
     await Promise.all(
       stack.repos.map(async repo => {
         try {
-          const data = await injections.historyService.getRepoData({ repo, region, githubToken })
+          const data = await injections.starsService.getRepoData({ repo, region, githubToken })
           if (data) {
             actions.pushRepository(data)
             if (data.requiredCacheUpdate) {
-              injections.historyService.saveRepoToStore(data)
+              injections.starsService.saveRepoToStore(data)
             }
           }
         } catch (err) {
@@ -229,4 +229,4 @@ const historyModel: HistoryModel = {
   }),
 }
 
-export default historyModel
+export default starsModel

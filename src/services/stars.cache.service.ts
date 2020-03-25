@@ -1,14 +1,14 @@
 import ky from 'ky'
 import dayjs from 'dayjs'
-import { Repository, getStarHistory, fetchCurrentStars } from './history.service'
+import { Repository, getStarHistory, fetchCurrentStars } from './stars.service'
 
-interface HistoryGetParam {
+interface StarsGetParam {
   repo: string
   region?: string
   githubToken?: string
 }
 
-export const getRepoData = async ({ repo, region, githubToken }: HistoryGetParam): Promise<Repository | null> => {
+export const getRepoData = async ({ repo, region, githubToken }: StarsGetParam): Promise<Repository | null> => {
   if (!process.env.REACT_APP_CATCH) return null
   const domain = region === 'CN'? process.env.REACT_APP_CATCH_CN: process.env.REACT_APP_CATCH
 
