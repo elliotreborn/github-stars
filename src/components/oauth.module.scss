@@ -1,0 +1,28 @@
+@import '../styles/variable';
+
+.oauthbar {
+  display: inline-block;
+  font-family: $font-sans;
+  // line-height: 34px;
+  line-height: 22px;
+  svg.gicon {
+    margin-right: 5px;
+    width: 1.2em;
+  }
+  span.why {
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  .scdropdown {
+    vertical-align: middle;
+  }
+  i.scicon {
+    margin-left: 2px;
+  }
+  :global(.dropdown-item) {
+    font-size: 1.2rem;
+  }
+  :global(.dropdown-content p:not(:first-child)) {
+    margin-top: 10px;
+  }
+}

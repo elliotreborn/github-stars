@@ -1,0 +1,9 @@
+.about {
+  opacity: 0.4;
+  &.loaddone {
+    opacity: 1;
+    transition: opacity 100ms linear 100ms;
+  }
+  height: calc(100vh - 50px) !important;
+  overflow-y: auto;
+}

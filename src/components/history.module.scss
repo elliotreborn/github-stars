@@ -1,0 +1,108 @@
+@import '../styles/variable';
+
+div.history {
+  padding: 1.5rem;
+}
+
+div.stacks {
+  overflow-y: auto;
+  height: calc(100vh - 190px);
+  p.button {
+    width: auto !important;
+    flex-grow: 0 !important;
+  }
+}
+
+a.stack {
+  font-family: $font-mono;
+  font-size: 1.2rem;
+  position: relative;
+  & > :global(i.fa-close) {
+    position: absolute;
+    right: 10px;
+    display: none;
+    color: $grey-light;
+    cursor: pointer;
+    &:hover {
+      color: $black;
+    }
+  }
+
+  &:hover {
+    & > :global(i.fa-close) {
+      display: inline;
+    }
+  }
+}
+
+:global(a.panel-block.is-active) {
+  border-bottom: none;
+  cursor: default;
+  color: $primary;
+  &:hover {
+    background-color: $white;
+  }
+}
+
+div.repos {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 0.2em 0.75em 0.5em 2.7em;
+  border-bottom: 1px solid #ededed;
+  p.repo {
+    display: flex;
+    // justify-content: space-between;
+    align-items: center;
+    & > :global(i.fa-close) {
+      margin-left: 8px;
+      display: none;
+      color: $grey-light;
+      cursor: pointer;
+      &:hover {
+        color: $black;
+      }
+    }
+    &:hover {
+      & > :global(i.fa-close) {
+        display: inline;
+      }
+    }
+  }
+}
+
+.topbar {
+  text-align: right;
+}
+
+.loading {
+  width: 100%;
+  z-index: 9;
+  position: absolute;
+  top: 0;
+}
+
+.footer {
+  text-align: center;
+  color: $gray;
+
+  a.domain {
+    color: $gray;
+    transition: color 0.4s ease-in-out, border 0.4s ease-in-out;
+    @include underline();
+    &:hover {
+      @include underline-hover();
+      color: $black-bis;
+    }
+  }
+
+  svg.twitter {
+    width: 20px;
+    margin-left: 10px;
+    fill: $grey;
+    transition: fill 0.4s ease-in-out, border 0.4s ease-in-out;
+    &:hover {
+      fill: $black-bis;
+    }
+  }
+}

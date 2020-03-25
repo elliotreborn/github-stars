@@ -1,0 +1,343 @@
+@import 'sanitize';
+@import 'variable';
+@import 'googlefonts';
+
+// https://bulma.io/documentation/customize/with-node-sass/#6-add-your-own-bulma-styles
+$purple: $primary; // #8A4D76;
+
+// Update Bulma's global variables
+$body-overflow-y: hidden;
+$family-sans-serif: $font-sans;
+$grey-dark: $dh-mute; // #757763;
+$grey-light: #d0d1cd; // $bulma-grey-light
+$link: $primary;
+$widescreen-enabled: true;
+$fullhd-enabled: true;
+$pre-code-font-size: 1em;
+$code-background: transparent;
+$code-size: 1em;
+$code-padding: 0;
+
+// Update some of Bulma's component variables
+// $body-background-color: #EFF0EB;
+// $control-border-width: 2px;
+// $input-border-color: transparent;
+// $input-shadow: none;
+
+// Import only what you need from Bulma
+@import '~bulma/sass/utilities/_all.sass';
+@import '~bulma/sass/base/_all.sass';
+@import '~bulma/sass/grid/columns.sass';
+@import '~bulma/sass/grid/tiles.sass';
+@import '~bulma/sass/elements/button.sass';
+@import '~bulma/sass/elements/container.sass';
+@import '~bulma/sass/elements/title.sass';
+@import '~bulma/sass/elements/other.sass';
+@import '~bulma/sass/elements/icon.sass';
+@import '~bulma/sass/elements/notification.sass';
+@import '~bulma/sass/form/_all.sass';
+@import '~bulma/sass/components/navbar.sass';
+@import '~bulma/sass/components/dropdown.sass';
+@import '~bulma/sass/components/menu.sass';
+@import '~bulma/sass/components/modal.sass';
+@import '~bulma/sass/components/message.sass';
+@import '~bulma/sass/components/panel.sass';
+@import '~bulma/sass/layout/hero.sass';
+@import '~bulma/sass/layout/section.sass';
+// @import '~bulma/sass/layout/footer.sass';
+// @import '~bulma-checkradio';
+
+// $tooltip-font-size: 14px;
+// @import '~bulma-tooltip';
+// ------------------------------------------------------------------------------------
+
+$fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+// @import '~@fortawesome/fontawesome-free/scss/brands';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+// plus icons: https://www.iconfont.cn/collections/detail?cid=17211
+
+// https://stackoverflow.com/a/36285419/346701 batter to Official
+.fa-theme {
+  // &.is-light {
+  //   color: $light;
+  // }
+  &.is-danger {
+    color: $danger;
+  }
+  &.is-warning {
+    color: $warning;
+  }
+  &.is-dark {
+    color: $dark;
+  }
+  &.is-success {
+    color: $success;
+  }
+}
+.fa-globe {
+  @extend %fa-icon;
+  @extend .fas;
+  @extend .fa-globe;
+}
+.fa-search {
+  @extend %fa-icon;
+  @extend .fas;
+  @extend .fa-search;
+}
+.fa-question {
+  @extend %fa-icon;
+  @extend .far;
+  @extend .fa-question-circle;
+}
+.fa-group {
+  @extend %fa-icon;
+  @extend .fas;
+  @extend .fa-layer-group;
+}
+.fa-user {
+  @extend %fa-icon;
+  @extend .far;
+  @extend .fa-user-circle;
+}
+.fa-close {
+  @extend %fa-icon;
+  @extend .far;
+  @extend .fa-window-close;
+}
+.fa-image {
+  @extend %fa-icon;
+  @extend .far;
+  @extend .fa-image;
+}
+
+$positions: static, relative, absolute, fixed, sticky !default;
+@each $position in $positions {
+  .pos-#{$position} {
+    position: $position !important;
+  }
+}
+
+$preset-displays: none, inline, inline-block, block, table, table-row, table-cell, flex, inline-flex !default;
+@each $value in $preset-displays {
+  .dis-#{$value} {
+    display: $value !important;
+  }
+}
+
+$preset-sizes: (
+  25: 25%,
+  50: 50%,
+  75: 75%,
+  100: 100%,
+  auto: auto,
+);
+@each $prop, $abbrev in (width: w, height: h) {
+  @each $size, $length in $preset-sizes {
+    .#{$abbrev}#{$size} {
+      #{$prop}: $length !important;
+    }
+  }
+}
+
+$spaces: (
+  5: 5px,
+  10: 10px,
+  20: 20px,
+  40: 40px,
+  5v: 5vw,
+  10v: 10vw,
+  20v: 20vw,
+  40v: 40vw,
+  1r: 1rem,
+  2r: 2rem,
+  3r: 3rem,
+  4r: 4rem,
+  5r: 5rem,
+);
+$space-props: (
+  margin: mg,
+  margin-top: mgt,
+  margin-bottom: mgb,
+  margin-left: mgl,
+  margin-right: mgr,
+  padding: pd,
+  padding-top: pdt,
+  padding-bottom: pdb,
+  padding-left: pdl,
+  padding-right: pdr,
+);
+@each $prop, $abbrev in $space-props {
+  @each $space, $value in $spaces {
+    .#{$abbrev}#{$space} {
+      #{$prop}: $value !important;
+    }
+  }
+}
+
+.hide {
+  visibility: hidden;
+}
+.hide-im {
+  visibility: hidden !important;
+}
+.pnt {
+  cursor: pointer;
+}
+.stretched-link {
+  @include stretched-link();
+}
+
+html,
+body {
+  // background: $dh-body;
+  // font-family: $font-sans;
+  font-family: $font-mono;
+  font-size: $fontsize;
+  line-height: 1.6;
+  color: $dh-text;
+}
+
+@media (max-width: 768px) {
+  body {
+    overflow-y: auto;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Roboto Slab';
+}
+
+pre,
+code {
+  font-family: $font-mono;
+  letter-spacing: -0.03em;
+}
+
+// @media (prefers-color-scheme: dark) {
+//   html,body {
+//     background: #0e0c0a;
+//   }
+// }
+
+a.link {
+  border-bottom: solid 1px transparent;
+  transition: color 0.4s ease-in-out, border 0.4s ease-in-out;
+
+  &:hover {
+    color: $primary;
+    border-bottom: solid 1px $primary;
+  }
+}
+
+.app {
+  height: 100vh;
+  & > .container {
+    height: 100vh;
+  }
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  z-index: 11;
+}
+
+.markdown-body {
+  margin: 15px 20px;
+  h1 {
+    font-size: 1.5em;
+  }
+  &.querying {
+    table,
+    p {
+      margin: 0;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .applogo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+html {
+  *::-webkit-scrollbar {
+    -webkit-appearance: none;
+  }
+  *::-webkit-scrollbar:vertical {
+    width: 16px;
+  }
+  *::-webkit-scrollbar:horizontal {
+    height: 16px;
+  }
+
+  *::-webkit-scrollbar-button,
+  *::-webkit-scrollbar-corner {
+    display: none;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: $dh-body;
+    border: 1px solid $dh-body;
+
+    &:hover {
+      background: $dh-body; //#f9f9f9;
+      border-color: $dh-body; //#e1e1e1;
+    }
+
+    &:vertical {
+      border-width: 0 0 0 1px;
+    }
+
+    &:vertical:corner-present {
+      border-width: 0 0 1px 1px;
+      border-radius: 0 0 0 2px;
+    }
+
+    &:horizontal {
+      border-width: 1px 1px 0 1px;
+      border-radius: 2px 2px 0 0;
+    }
+  }
+
+  *::-webkit-scrollbar-thumb {
+    min-height: 2rem;
+    background: #ccc;
+    background-clip: padding-box;
+    border: 5px solid rgba(black, 0);
+    border-radius: 10px;
+
+    &:hover,
+    &:active {
+      background-color: #999;
+      border-width: 4px;
+    }
+  }
+}

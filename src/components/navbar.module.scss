@@ -1,0 +1,52 @@
+@import '../styles/variable';
+
+.brand {
+  font-family: 'Patua One';
+}
+
+.logo {
+  margin-right: 10px;
+}
+
+.github {
+  font-family: $font-sans;
+  svg.gicon {
+    margin-right: 5px;
+    width: 1.2em;
+    height: 1.2em;
+  }
+}
+
+a.navlink {
+  padding: 1.4em 1.5em 1.4em calc(1em + 50px);
+  &.chrome {
+    background: #fff url(../images/icons8-chrome.svg) left 0.5em center/50px 50px no-repeat;
+  }
+  &.edge {
+    background: #fff url(../images/icons8-edge.svg) left 0.5em center/50px 50px no-repeat;
+  }
+  &.spectrum {
+    background: #fff url(../images/spectrum.svg) left 0.7em center/30px 30px no-repeat;
+    padding: 0.8em 0.8em 0.8em calc(1.2em + 30px);
+  }
+  &.discord {
+    background: #fff url(../images/discord.svg) left 0.6em center/30px 30px no-repeat;
+    padding: 0.8em 0.8em 0.8em calc(1.2em + 30px);
+  }
+  &.telegram {
+    background: #fff url(../images/telegram.svg) left 0.9em center/22px 22px no-repeat;
+    padding: 0.8em 0.8em 0.8em calc(1.2em + 30px);
+  }
+  &.wechat {
+    background: #fff url(../images/wechat.svg) left 0.9em center/22px 22px no-repeat;
+    padding: 0.8em 0.8em 0.8em calc(1.2em + 30px);
+  }
+}
+
+.wechatqr {
+  width: 360px !important;
+  .wechatmd {
+    background-color: #ededed;
+    text-align: center;
+  }
+}
