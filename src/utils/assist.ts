@@ -20,7 +20,6 @@ export const IntEnumObjects = (enumme): Array<{ label: string; value: number }> 
 
 const { location, history } = window
 
-// https://stackoverflow.com/a/41542008
 export const winSearchParams = (params: { stack?: string; repos?: string }): void => {
   const searchParams = new URLSearchParams(window.location.search)
   if (params.stack !== undefined) {
