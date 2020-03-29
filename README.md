@@ -3,7 +3,7 @@
 <img src="https://github-stars.socode.pro/logo.svg" alt="logo" width="100" />
 
 ### Github Stars
-  ✨github repo's star growth chart  
+  ✨repository's star growth chart  
   [**Explore Demo »**](https://github-stars.socode.pro/)
 
   [report bug](https://github.com/elliotreborn/github-stars/issues) · 

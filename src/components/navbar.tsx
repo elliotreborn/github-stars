@@ -60,7 +60,7 @@ const Navbar: React.FC = () => {
               </a>
               <a
                 className={cs('navbar-item', css.navlink, css.telegram)}
-                href='https://t.me/StarHistory'
+                href='https://t.me/SocodeGithubStars'
                 target='_blank'
                 rel='noopener noreferrer'>
                 <h3>telegram</h3>
