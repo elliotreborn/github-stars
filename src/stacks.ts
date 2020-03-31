@@ -199,6 +199,17 @@ const Stacks: Stack[] = [
     ],
   },
   {
+    id: 'java-web-cache',
+    name: 'Java Web Cache',
+    type: StackType.Backend,
+    repos: [
+      'infinispan/infinispan',
+      'hazelcast/hazelcast',
+      'ehcache/ehcache3',
+      'ben-manes/caffeine',
+    ],
+  },
+  {
     id: 'webfront-frameworks',
     name: 'WebFront Frameworks',
     type: StackType.Frontend,
