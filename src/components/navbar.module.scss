@@ -25,10 +25,10 @@ a.navlink {
   &.edge {
     background: #fff url(../images/icons8-edge.svg) left 0.5em center/50px 50px no-repeat;
   }
-  &.spectrum {
-    background: #fff url(../images/spectrum.svg) left 0.7em center/30px 30px no-repeat;
-    padding: 0.8em 0.8em 0.8em calc(1.2em + 30px);
-  }
+  // &.spectrum {
+  //   background: #fff url(../images/spectrum.svg) left 0.7em center/30px 30px no-repeat;
+  //   padding: 0.8em 0.8em 0.8em calc(1.2em + 30px);
+  // }
   &.discord {
     background: #fff url(../images/discord.svg) left 0.6em center/30px 30px no-repeat;
     padding: 0.8em 0.8em 0.8em calc(1.2em + 30px);
@@ -40,6 +40,26 @@ a.navlink {
   &.wechat {
     background: #fff url(../images/wechat.svg) left 0.9em center/22px 22px no-repeat;
     padding: 0.8em 0.8em 0.8em calc(1.2em + 30px);
+  }
+  &.producthunt {
+    background: #fff url(../images/producthunt.svg) left 0.9em center/22px 22px no-repeat;
+    padding: 0.8em 0.8em 0.8em calc(1.2em + 30px);
+  }
+  &.email {
+    padding: 0.8em 0.8em 0.8em 1em;
+    line-height: 14px;
+    position: relative;
+    :global(.fa-email) {
+      position: absolute;
+      left: 1em;
+      line-height: 14px;
+      &::before {
+        font-size: 20px;
+      }
+    }
+    h3 {
+      margin-left: 33px;
+    }
   }
 }
 

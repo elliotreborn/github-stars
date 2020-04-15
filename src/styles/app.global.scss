@@ -111,6 +111,11 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
   @extend .far;
   @extend .fa-image;
 }
+.fa-email {
+  @extend %fa-icon;
+  @extend .far;
+  @extend .fa-envelope;
+}
 
 $positions: static, relative, absolute, fixed, sticky !default;
 @each $position in $positions {
