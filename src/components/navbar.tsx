@@ -51,13 +51,13 @@ const Navbar: React.FC = () => {
                 href='https://discord.gg/KSyk3BB'>
                 <h3>Discord</h3>
               </a>
-              <a
+              {/* <a
                 className={cs('navbar-item', css.navlink, css.spectrum)}
                 target='_blank'
                 rel='noopener noreferrer'
                 href='https://spectrum.chat/github-stars'>
                 <h3>Spectrum</h3>
-              </a>
+              </a> */}
               <a
                 className={cs('navbar-item', css.navlink, css.telegram)}
                 href='https://t.me/SocodeGithubStars'
@@ -68,6 +68,18 @@ const Navbar: React.FC = () => {
               <a
                 className={cs('navbar-item', css.navlink, css.wechat)} onClick={() => setWechatQR(true)}>
                 <h3>wechat group</h3>
+              </a>
+              <a
+                className={cs('navbar-item', css.navlink, css.producthunt)}
+                href='https://www.producthunt.com/posts/github-stars'
+                target='_blank'
+                rel='noopener noreferrer'>
+                <h3>Product Hunt</h3>
+              </a>
+              <a
+                className={cs('navbar-item', css.navlink, css.email)} href='mailto:elliotreborn@gmail.com'>
+                <i className={cs(css.iemail, 'fa-email')} />
+                <h3>Email</h3>
               </a>
             </div>
           </div>
@@ -109,7 +121,7 @@ const Navbar: React.FC = () => {
           </header>
           <div className={css.wechatmd}>
             <img src={wechatQRUrl} alt='wechat' />
-            <p>请备注 star history</p>
+            <p>请备注 Gtihub Stars</p>
           </div>
         </div>
         <button className='modal-close is-large' type='button' aria-label='close' onClick={() => setWechatQR(false)} />
