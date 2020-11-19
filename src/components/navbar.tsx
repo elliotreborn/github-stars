@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import cs from 'classnames'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEnvelope } from '@fortawesome/free-regular-svg-icons'
+import { faGlobe } from '@fortawesome/free-solid-svg-icons'
+import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import Language from '../utils/language'
 import { useStoreState, useStoreActions } from '../utils/hooks'
 import { DisplayType } from '../models/stars'
 import logoUrl from '../images/logo.svg'
 import { StringEnumObjects, isEdgeChromium } from '../utils/assist'
-import { ReactComponent as Github } from '../images/github.svg'
 import css from './navbar.module.scss'
 import wechatQRUrl from '../images/wechat.png'
 
@@ -36,7 +39,7 @@ const Navbar: React.FC = () => {
       <div className="navbar-menu">
         <div className="navbar-start">
           <a className="navbar-item" href='/about'>
-            ABOUT
+            About
           </a>
 
           <div className="navbar-item has-dropdown is-hoverable">
@@ -78,7 +81,7 @@ const Navbar: React.FC = () => {
               </a>
               <a
                 className={cs('navbar-item', css.navlink, css.email)} href='mailto:elliotreborn@gmail.com'>
-                <i className={cs(css.iemail, 'fa-email')} />
+                <FontAwesomeIcon icon={faEnvelope} />
                 <h3>Email</h3>
               </a>
             </div>
@@ -86,7 +89,7 @@ const Navbar: React.FC = () => {
 
           <div className="navbar-item">
             <a target='_blank' rel="noopener noreferrer" href='https://github.com/elliotreborn/github-stars' className={cs('button', css.github, themeClass)}>
-              <Github className={css.gicon} />
+              <FontAwesomeIcon icon={faGithub} className={css.gicon} />
               Source Code
             </a>
           </div>
@@ -105,7 +108,7 @@ const Navbar: React.FC = () => {
                 </select>
               </div>
               <span className='icon is-left'>
-                <i className={cs('fa-globe', 'fa-theme', themeClass)} />
+                <FontAwesomeIcon icon={faGlobe}  className={cs('icon-theme', themeClass)} />
               </span>
             </div>
           </div>
