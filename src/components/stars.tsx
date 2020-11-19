@@ -15,10 +15,9 @@ import css from './stars.module.scss'
 import Loader from './loader'
 import { ReactComponent as Twitter } from '../images/twitter.svg'
 
-const fuseOptions: Fuse.FuseOptions<Stack> = {
+const fuseOptions: Fuse.IFuseOptions<Stack> = {
   keys: ['name', 'repos'],
   threshold: 0.3,
-  maxPatternLength: 8,
 }
 
 Chartkick.use(Highcharts)
@@ -78,7 +77,7 @@ const History: React.FC = (): JSX.Element => {
   useEffect(() => {
     if (query !== '') {
       const fuse = new Fuse(displayStacks, fuseOptions)
-      const result = fuse.search<Stack, false, false>(query)
+      const result = fuse.search<Stack>(query).map((r) => r.item)
       setQueryStacks(result)
     } else {
       setQueryStacks([])

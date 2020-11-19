@@ -47,6 +47,10 @@
     "no-param-reassign": ["warn", { "props": false }],
     "no-nested-ternary": "off",
     "no-unused-expressions": ["warn", { "allowShortCircuit": true, "allowTernary": true }],
-    "no-restricted-syntax": "off"
+    "no-restricted-syntax": "off",
+
+    // https://stackoverflow.com/a/64024916/346701
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": ["error"]
   }
 }
