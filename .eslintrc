@@ -42,11 +42,15 @@
     "jsx-a11y/anchor-has-content": "off",
     "jsx-a11y/label-has-associated-control": "warn",
     "@typescript-eslint/no-var-requires": "off",
-    "@typescript-eslint/camelcase": ["warn"],
+    // "@typescript-eslint/camelcase": ["warn"],
     "import/no-cycle": "warn", // import/no-cycle: https://github.com/benmosher/eslint-plugin-import/issues/1453,
     "no-param-reassign": ["warn", { "props": false }],
     "no-nested-ternary": "off",
     "no-unused-expressions": ["warn", { "allowShortCircuit": true, "allowTernary": true }],
-    "no-restricted-syntax": "off"
+    "no-restricted-syntax": "off",
+
+    // https://stackoverflow.com/a/64024916/346701
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": ["error"]
   }
 }
