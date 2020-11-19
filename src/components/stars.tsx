@@ -3,6 +3,9 @@ import cs from 'classnames'
 import Fuse from 'fuse.js'
 import Highcharts from 'highcharts'
 import Chartkick, { LineChart } from 'react-chartkick'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faImage, faWindowClose, faUserCircle } from '@fortawesome/free-regular-svg-icons'
+import { faLayerGroup, faSearch } from '@fortawesome/free-solid-svg-icons'
 import html2canvas from 'html2canvas'
 import Language from '../utils/language'
 import { Stack, StackType } from '../stacks'
@@ -15,10 +18,9 @@ import css from './stars.module.scss'
 import Loader from './loader'
 import { ReactComponent as Twitter } from '../images/twitter.svg'
 
-const fuseOptions: Fuse.FuseOptions<Stack> = {
+const fuseOptions: Fuse.IFuseOptions<Stack> = {
   keys: ['name', 'repos'],
   threshold: 0.3,
-  maxPatternLength: 8,
 }
 
 Chartkick.use(Highcharts)
@@ -78,7 +80,7 @@ const History: React.FC = (): JSX.Element => {
   useEffect(() => {
     if (query !== '') {
       const fuse = new Fuse(displayStacks, fuseOptions)
-      const result = fuse.search<Stack, false, false>(query)
+      const result = fuse.search<Stack>(query).map((r) => r.item)
       setQueryStacks(result)
     } else {
       setQueryStacks([])
@@ -104,7 +106,15 @@ const History: React.FC = (): JSX.Element => {
               <a href={`https://github.com/${repo}`} target='_blank' rel='noopener noreferrer'>
                 {repo}
               </a>
-              {s.type === StackType.Private && <i className='fa-close' onClick={() => removePrivateStackRepo({ stackid: s.id, repo })} />}
+              {s.type === StackType.Private && (
+                <FontAwesomeIcon
+                  icon={faWindowClose}
+                  onClick={() => {
+                    removePrivateStackRepo({ stackid: s.id, repo })
+                  }}
+                  className={css.faclose}
+                />
+              )}
             </p>
           ))}
           {s.type === StackType.Private && (
@@ -151,11 +161,11 @@ const History: React.FC = (): JSX.Element => {
     <div className={cs('columns', css.history)}>
       <div className={cs('column', 'is-one-quarter')}>
         <nav className='panel'>
-          <div className="panel-heading">
-            <p className="control has-icons-left">
-              <input className="input" type="search" spellCheck={false} value={query} onChange={e => setQuery(e.target.value) } placeholder="Search" />
-              <span className="icon is-left">
-                <i className="fas fa-search" aria-hidden="true" />
+          <div className='panel-heading'>
+            <p className='control has-icons-left'>
+              <input className='input' type='search' spellCheck={false} value={query} onChange={e => setQuery(e.target.value) } placeholder='Search' />
+              <span className='icon is-left'>
+                <FontAwesomeIcon icon={faSearch} className={css.facsearch} />
               </span>
             </p>
           </div>
@@ -194,12 +204,13 @@ const History: React.FC = (): JSX.Element => {
                   className={cs('panel-block', css.stack, { 'is-active': s.id === currentStack?.id })}
                   onClick={() => selectStack(s)}>
                   <span className='panel-icon'>
-                    <i className={cs({ 'fa-group': s.type !== StackType.Private, 'fa-user': s.type === StackType.Private })} aria-hidden='true' />
+                    {s.type === StackType.Private && <FontAwesomeIcon icon={faUserCircle} aria-hidden='true' />}
+                    {s.type !== StackType.Private && <FontAwesomeIcon icon={faLayerGroup} aria-hidden='true' />}
                   </span>
                   {language === Language.中文 ? (s.nameChinese || s.name): s.name}
-                  <i
-                    className='fa-close'
-                    onClick={e => {
+                  <FontAwesomeIcon
+                    icon={faWindowClose}
+                    onClick={(e) => {
                       e.stopPropagation()
                       if (s.type === StackType.Private) {
                         removePrivateStack(s.id)
@@ -207,6 +218,7 @@ const History: React.FC = (): JSX.Element => {
                         addHiddenStack(s.id)
                       }
                     }}
+                    className={css.faclose}
                   />
                 </a>
                 {s.id === currentStack?.id && Repositories(s)}
@@ -218,12 +230,13 @@ const History: React.FC = (): JSX.Element => {
                   className={cs('panel-block', css.stack, { 'is-active': s.id === currentStack?.id })}
                   onClick={() => selectStack(s)}>
                   <span className='panel-icon'>
-                    <i className={cs({ 'fa-group': s.type !== StackType.Private, 'fa-user': s.type === StackType.Private })} aria-hidden='true' />
+                    {s.type === StackType.Private && <FontAwesomeIcon icon={faUserCircle} aria-hidden='true' />}
+                    {s.type !== StackType.Private && <FontAwesomeIcon icon={faLayerGroup} aria-hidden='true' />}
                   </span>
                   {language === Language.中文 ? (s.nameChinese || s.name): s.name}
-                  <i
-                    className='fa-close'
-                    onClick={e => {
+                  <FontAwesomeIcon
+                    icon={faWindowClose}
+                    onClick={(e) => {
                       e.stopPropagation()
                       if (s.type === StackType.Private) {
                         removePrivateStack(s.id)
@@ -231,6 +244,7 @@ const History: React.FC = (): JSX.Element => {
                         addHiddenStack(s.id)
                       }
                     }}
+                    className={css.faclose}
                   />
                 </a>
                 {s.id === currentStack?.id && Repositories(s)}
@@ -242,10 +256,13 @@ const History: React.FC = (): JSX.Element => {
                   className={cs('panel-block', css.stack, { 'is-active': s.id === currentStack?.id })}
                   onClick={() => selectStack(s)}>
                   <span className='panel-icon'>
-                    <i className={cs({ 'fa-group': s.type !== StackType.Private, 'fa-user': s.type === StackType.Private })} aria-hidden='true' />
+                    {s.type === StackType.Private && <FontAwesomeIcon icon={faUserCircle} aria-hidden='true' />}
+                    {s.type !== StackType.Private && <FontAwesomeIcon icon={faLayerGroup} aria-hidden='true' />}
                   </span>
                   {language === Language.中文 ? (s.nameChinese || s.name): s.name}
-                  <i className='fa-close' onClick={e => {
+                  <FontAwesomeIcon
+                    icon={faWindowClose}
+                    onClick={(e) => {
                       e.stopPropagation()
                       if (s.type === StackType.Private) {
                         removePrivateStack(s.id)
@@ -253,6 +270,7 @@ const History: React.FC = (): JSX.Element => {
                         addHiddenStack(s.id)
                       }
                     }}
+                    className={css.faclose}
                   />
                 </a>
                 {s.id === currentStack?.id && Repositories(s)}
@@ -264,15 +282,17 @@ const History: React.FC = (): JSX.Element => {
                   className={cs('panel-block', css.stack, { 'is-active': s.id === currentStack?.id })}
                   onClick={() => selectStack(s)}>
                   <span className='panel-icon'>
-                    <i className='fa-user' aria-hidden='true' />
+                    <FontAwesomeIcon icon={faUserCircle} aria-hidden='true' />
                   </span>
                   {language === Language.中文 ? (s.nameChinese || s.name): s.name}
-                  <i className='fa-close' onClick={e => {
-                      e.stopPropagation()
-                      if (window.confirm('Will be deleted!'))
-                        removePrivateStack(s.id)
-                    }}
-                  />
+                    <FontAwesomeIcon
+                      icon={faWindowClose}
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        if (window.confirm('Will be deleted!')) removePrivateStack(s.id)
+                      }}
+                      className={css.faclose}
+                    />
                 </a>
                 {s.id === currentStack?.id && Repositories(s)}
               </Fragment>
@@ -283,13 +303,16 @@ const History: React.FC = (): JSX.Element => {
                   className={cs('panel-block', css.stack, { 'is-active': s.id === currentStack?.id })}
                   onClick={() => selectStack(s)}>
                   <span className='panel-icon'>
-                    <i className='fa-group' aria-hidden='true' />
+                    <FontAwesomeIcon icon={faLayerGroup} aria-hidden='true' />
                   </span>
                   {language === Language.中文 ? (s.nameChinese || s.name): s.name}
-                  <i className='fa-close' onClick={e => {
+                  <FontAwesomeIcon
+                    icon={faWindowClose}
+                    onClick={(e) => {
                       e.stopPropagation()
                       removeHiddenStack(s.id)
                     }}
+                    className={css.faclose}
                   />
                 </a>
                 {s.id === currentStack?.id && Repositories(s)}
@@ -301,10 +324,12 @@ const History: React.FC = (): JSX.Element => {
       </div>
       <div className={cs('column', 'pos-relative')}>
         <div className={css.topbar}>
-          {currentStack && <a className={cs('button', 'is-info', 'is-small', 'mgr10')} onClick={downloadImage}>
-            <i className='fa-image mgr5' />
-            Download Image
-          </a>}
+          {currentStack && (
+            <a className={cs('button', 'is-info', 'is-small', 'mgr10')} onClick={downloadImage}>
+              <FontAwesomeIcon icon={faImage} className='mgr5' />
+              Download Image
+            </a>
+          )}
           {!githubToken && <OAuth />}
         </div>
 

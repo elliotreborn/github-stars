@@ -1,8 +1,10 @@
 import React, { useState, useCallback } from 'react'
 import cs from 'classnames'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faQuestionCircle } from '@fortawesome/free-regular-svg-icons'
+import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import Language from '../utils/language'
 import { useStoreActions, useStoreState } from '../utils/hooks'
-import { ReactComponent as Github } from '../images/github.svg'
 import { error } from '../utils/toast'
 import css from './oauth.module.scss'
 
@@ -29,13 +31,12 @@ const Slogan: React.FC = (): JSX.Element => {
   return (
     <div className={css.oauthbar}>
       <a className={cs('button', 'is-danger', 'is-small')} onClick={GithubOAuth}>
-        <Github className={css.gicon} />
+        <FontAwesomeIcon icon={faGithub} className={css.gicon} />
         OAuth for token
       </a>
       <div className={cs('dropdown is-right', css.scdropdown, { 'is-active': displayTips })}>
         <span className={css.why} onClick={() => setDisplayTips(!displayTips)}>
-          why
-          <i className={cs(css.scicon, 'fa-question')} />
+          <FontAwesomeIcon icon={faQuestionCircle} className={css.scicon} />
         </span>
 
         <div className='dropdown-menu' style={{ width: 300 }}>

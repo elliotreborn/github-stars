@@ -51,15 +51,7 @@ $code-padding: 0;
 // @import '~bulma-tooltip';
 // ------------------------------------------------------------------------------------
 
-$fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
-@import '~@fortawesome/fontawesome-free/scss/fontawesome';
-// @import '~@fortawesome/fontawesome-free/scss/brands';
-@import '~@fortawesome/fontawesome-free/scss/solid';
-@import '~@fortawesome/fontawesome-free/scss/regular';
-// plus icons: https://www.iconfont.cn/collections/detail?cid=17211
-
-// https://stackoverflow.com/a/36285419/346701 batter to Official
-.fa-theme {
+.icon-theme {
   // &.is-light {
   //   color: $light;
   // }
@@ -75,46 +67,6 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
   &.is-success {
     color: $success;
   }
-}
-.fa-globe {
-  @extend %fa-icon;
-  @extend .fas;
-  @extend .fa-globe;
-}
-.fa-search {
-  @extend %fa-icon;
-  @extend .fas;
-  @extend .fa-search;
-}
-.fa-question {
-  @extend %fa-icon;
-  @extend .far;
-  @extend .fa-question-circle;
-}
-.fa-group {
-  @extend %fa-icon;
-  @extend .fas;
-  @extend .fa-layer-group;
-}
-.fa-user {
-  @extend %fa-icon;
-  @extend .far;
-  @extend .fa-user-circle;
-}
-.fa-close {
-  @extend %fa-icon;
-  @extend .far;
-  @extend .fa-window-close;
-}
-.fa-image {
-  @extend %fa-icon;
-  @extend .far;
-  @extend .fa-image;
-}
-.fa-email {
-  @extend %fa-icon;
-  @extend .far;
-  @extend .fa-envelope;
 }
 
 $positions: static, relative, absolute, fixed, sticky !default;
