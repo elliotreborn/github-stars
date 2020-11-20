@@ -15,33 +15,21 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version: [14.x, 15.x]
+
     steps:
     - uses: actions/checkout@v2
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v1.1.0
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
       with:
-        version: 13.x
+        node-version: ${{ matrix.node-version }}
 
-    - name: Install npm dependencies
-      run: npm ci
+    - run: npm install
+    - run: npm run build --if-present
+    - run: npm test
 
-    - name: Run build
-      run: npm run build
-
-  # test:
-  #   runs-on: ubuntu-latest
-
-  #   steps:
-  #   - uses: actions/checkout@v2
-
-  #   - name: Setup Node.js
-  #     uses: actions/setup-node@v1.1.0
-  #     with:
-  #       version: 13.x
-
-  #   - name: Install npm dependencies
-  #     run: npm ci
-
-  #   - name: Run tests
-  #     run: npm test
+      # env:
+      #   CI: true
