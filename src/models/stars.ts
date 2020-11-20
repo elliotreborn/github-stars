@@ -118,7 +118,11 @@ const starsModel: StarsModel = {
     actions.setLoading(true)
     const { region, githubToken } = getStoreState().storage
     try {
-      const data = await injections.starsService.getRepoData({ repo, region, githubToken })
+      const data = await injections.starsService.getRepoData({
+        repo,
+        country: region.country_code,
+        token: githubToken,
+      })
       if (data) {
         actions.pushRepository(data)
         if (data.requiredCacheUpdate) {
@@ -208,7 +212,11 @@ const starsModel: StarsModel = {
     await Promise.all(
       stack.repos.map(async repo => {
         try {
-          const data = await injections.starsService.getRepoData({ repo, region, githubToken })
+          const data = await injections.starsService.getRepoData({
+            repo,
+            country: region.country_code,
+            token: githubToken,
+          })
           if (data) {
             actions.pushRepository(data)
             if (data.requiredCacheUpdate) {

@@ -42,11 +42,11 @@ const displayTypeOptions = IntEnumObjects(DisplayType)
 
 const History: React.FC = (): JSX.Element => {
   const initialCurrentStack = useStoreActions(actions => actions.stars.initialCurrentStack)
-  const estimateRegion = useStoreActions(actions => actions.storage.estimateRegion)
+  const judgeRegion = useStoreActions(actions => actions.storage.judgeRegion)
   useEffect(() => {
     initialCurrentStack()
-    estimateRegion()
-  }, [initialCurrentStack, estimateRegion])
+    judgeRegion()
+  }, [initialCurrentStack, judgeRegion])
 
   const language = useStoreState<Language>(state => state.storage.language)
   const githubToken = useStoreState<string>(state => state.storage.githubToken)

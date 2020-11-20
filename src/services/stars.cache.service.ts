@@ -4,13 +4,13 @@ import { Repository, getStarHistory, fetchCurrentStars } from './stars.service'
 
 interface StarsGetParam {
   repo: string
-  region?: string
-  githubToken?: string
+  country?: string
+  token?: string
 }
 
-export const getRepoData = async ({ repo, region, githubToken }: StarsGetParam): Promise<Repository | null> => {
+export const getRepoData = async ({ repo, country, token }: StarsGetParam): Promise<Repository | null> => {
   if (!process.env.REACT_APP_CATCH) return null
-  const domain = region === 'CN'? process.env.REACT_APP_CATCH_CN: process.env.REACT_APP_CATCH
+  const domain = country === 'CN'? process.env.REACT_APP_CATCH_CN: process.env.REACT_APP_CATCH
 
   try {
     const json = await ky.get(`${domain}/${repo.replace('/', '_')}.json`).json<Repository>()
@@ -20,13 +20,13 @@ export const getRepoData = async ({ repo, region, githubToken }: StarsGetParam):
       const jsonNocache = await ky.get(`${domain}/${repo.replace('/', '_')}.json?${dayjs().unix()}`).json<Repository>()
       if (dayjs(jsonNocache.lastRefreshDate).add(7, 'day').isBefore(dayjs())) {
         console.log(`nocache:requiredCacheUpdate:${repo}:${jsonNocache.lastRefreshDate}`)
-        return fetchCurrentStars(jsonNocache, githubToken)
+        return fetchCurrentStars(jsonNocache, token)
       }
       return jsonNocache
     }
     return json
   } catch (err) {
-    return getStarHistory(repo, githubToken)
+    return getStarHistory(repo, token)
   }
 }
 
