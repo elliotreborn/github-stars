@@ -21,7 +21,7 @@
     "easy-peasy": "^4.0.1",
     "eslint-config-react-app": "^6.0.0",
     "fuse.js": "^6.4.3",
-    "highcharts": "^8.2.2",
+    "highcharts": "^9.0.0",
     "html2canvas": "^1.0.0-rc.5",
     "ky": "^0.25.0",
     "lodash": "^4.17.20",
